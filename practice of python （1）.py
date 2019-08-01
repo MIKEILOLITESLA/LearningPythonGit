@@ -177,14 +177,36 @@ for factor in range (x,0,-1):
         print('%d和%d的最小公倍数为%d' % (x,y,x*y/factor))
         break#不是很理解，如果不加break就会跳出1和54...所以问题到底出在哪？
 #打印三角形
+row = int(input('请输入行数: '))
+for i in range(row):
+    for _ in range(i + 1):
+        print('*', end='')
+    print()
+
+
+for i in range(row):
+    for j in range(row):
+        if j < row - i - 1:
+            print(' ', end='')
+        else:
+            print('*', end='')
+    print()
+
+for i in range(row):
+    for _ in range(row - i - 1):
+        print(' ', end='')
+    for _ in range(2 * i + 1):
+        print('*', end='')
+    print()
 
 #水仙花数
+#错误
 for x,y,z in range(0,10):
     if x*100 + y*10 + z == x**3 + y**3 + z**3:
         print('%d' % x*100 + y*10 + z)
     else:
         pass
-
+#错误
 for x in range (1,10):
     for y in range (0,10):
         for z in range(0,10):
@@ -193,6 +215,45 @@ for x in range (1,10):
             print(Nnumber)
         else:
             pass
+#错误
+from random import randint
+x = randint(1,9)
+y = randint(0,9)
+z = randint(0,9)#随机数只能过一轮
+Nnumber = x*100 + y*10 +z
+while True:#这一步的意思是存在就显示，不存在就不显示
+    if Nnumber == x**3 + y**3 + z**3:
+        print(Nnumber)
+    else:
+        pass
+#正确
+#水仙花数问题
+for i in range (100,999):
+        x = int(i / 100)
+        y = int(i/10 - 10*x)
+        z = i-100*x -10*y
+        if i == x**3 + y**3 + z**3:
+                print (i)#正确
+#公鸡百钱问题
+for x in range(0,100):
+    for y in range(0,100):
+        z = 100 - x - y
+        if 4*x + 7*y == 100 and x + y <= 100:
+            print('公鸡 = %d,母鸡 = %d，雏鸡 = %d' % (y,x,z))
+#正确
+#完美数
+from math import sqrt#sqrt求平方根函数
+for num in range (1,10):#可以调整range大小获得更多的完美数
+    end  = int(sqrt(num))
+    for x in range (2,end + 1):
+        if num % x != 0 and num != 1:
+            p = num 
+            for x in range (2,end + 1):
+                if (2**(p - 1)) % x != 0 :
+                    break
+                elif (2**(p - 1)) != 1 :
+                    D = (((2**p) - 1) *(2**(p - 1)))
+                    print('%d 是完美数' % D)#不是很懂为啥出不来 6 和 28
 
 
 
