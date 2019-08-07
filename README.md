@@ -1,3 +1,4 @@
-# python-git-scrape
+# PYTHON DATA ANALYSIS & GIT 学习
 personal practice programming
-前五天写的部分代码笔记+注释updated
+记录实习期间敲的py代码和相关学习进程。
+
