@@ -1,6 +1,0 @@
-主要目标：
-用爬虫爬这个网站上的数据，并且同时用到 git 对代码进行管理和修改。
-https://www.itjuzi.com/company/34892553
-
-具体学习计划：
-主要参考 GitHub上的python 100 天学习计划的前 “1 - 20天”以及“66 – 75 天”，(“1 - 20 天”计划中的前五天已经做完了，不过这部分内容可能还需要再练习一部分课后题，然后对应的练习的话我看到一个练习是python做词云我认为可以将它作为一个阶段性的小项目去尝试。网址如下：https://zhuanlan.zhihu.com/p/33756176%20 ，另外 python 100 天学习计划的主要安排：https://github.com/MIKEILOLITESLA/Python-100-Days/blob/master/README.md ）在这个“1 - 20 天”计划中剩余的十五天内容对我来说相对比较陌生，可能需要一周到1.5周时间去学习，练习（它每一天的课程后面都有一到两个对应的练习， 同时我找到了一个网上评价比较不错的 mooc 作为辅助和参考 ： https://www.coursera.org/learn/python/home/welcome），关于网络爬虫和具体的网页部分，我倾向于按照计划的节奏走，用10 天的时间去了解看懂其中两到三天进行练习（有一个辅助性的材料如下：https://zhuanlan.zhihu.com/p/36025436 ， https://zhuanlan.zhihu.com/p/34206711 ，和 https://www.scrapehero.com/open-source-web-scraping-frameworks-and-tools/ ），然后用五天时间掌握如何从哪个网页上用爬虫获取相应的信息。
