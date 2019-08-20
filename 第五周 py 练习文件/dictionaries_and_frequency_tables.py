@@ -48,8 +48,8 @@ if is_in_dictionary:
     print(result)
 
 #
-opened_file = open('AppleStore.csv')
 from csv import reader
+opened_file = open('AppleStore.csv')
 read_file = reader(opened_file)
 apps_data = list(read_file)
 content_ratings = {'4+': 0, '9+': 0, '12+': 0, '17+': 0}
@@ -73,6 +73,7 @@ for row in apps_data[1:]:
 print(content_ratings)
 
 #
+genre_counting = {}
 for row in apps_data[1:]:
     genre = row[11]    
     if genre in genre_counting:
@@ -118,6 +119,7 @@ min_size = min(data_sizes)
 max_size = max(data_sizes)
 
 #
+n_user_ratings =[]
 for row in apps_data[1:]:
     n_user_ratings.append(int(row[5]))
     
