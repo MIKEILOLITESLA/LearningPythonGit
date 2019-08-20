@@ -45,8 +45,8 @@ squared_6 = square(6)
 squared_11 = square(11)
 
 #
-opened_file = open('AppleStore.csv')
 from csv import reader
+opened_file = open('AppleStore.csv')
 read_file = reader(opened_file)
 apps_data = list(read_file)
 
