@@ -92,3 +92,5 @@ def divide():
     return a_sum / length
 
 result_2 = divide()
+
+#functions 的后续练习
