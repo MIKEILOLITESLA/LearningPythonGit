@@ -1,10 +1,7 @@
 #
-num_rows = len(moma)
-
-#
 # import the reader function from the csv module
 from csv import reader
-
+num_rows = len(moma)
 # use the python built-in function open()
 # to open the children.csv file
 opened_file = open('children.csv')
