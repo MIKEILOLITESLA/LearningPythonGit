@@ -47,4 +47,4 @@ dq = 'Dataquest'
 jn = 'Jupyter Notebook'
 py = 'Python'
 
-#在 Jupyter Notebook 中使用 Markdown 注释
+#在 Jupyter Notebook 中使用 Markdown 注释的方法
