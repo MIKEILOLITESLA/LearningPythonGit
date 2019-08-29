@@ -1,16 +1,16 @@
+
 #
 file_handle = open('result.txt',mode='w')
 
 #
 from csv import reader
 
-
-#
 def explore_data(dataset, start, end, rows_and_columns = False):
     dataset_slice = dataset[start:end]
     for row in dataset_slice: #打印列表全部内容
         print(row)
         print('\n') # 行间空
+
         DS = str(row)
         file_handle.write(DS)
         file_handle.write('\n')
@@ -28,18 +28,22 @@ def explore_data(dataset, start, end, rows_and_columns = False):
 #_*_ coding:utf-8 _*_
  
 # 读取 Applestore dataset
+
 open_fileA = open('AppleStore.csv',encoding='UTF-8')
 read_fileA = reader(open_fileA)
 ios = list(read_fileA)
 ios_T_head = ios[0]
 ios = ios[1:] #去掉首行的每列名称
 
+
 #读取 Googleplay dataset
+
 open_fileG = open('googleplaystore.csv',encoding='UTF-8')
 read_fileG = reader(open_fileG)
 android = list(read_fileG)
 android_T_head = android[0]
 android = android[1:] #去掉各自表格首行的每列名称
+
 
 print('##导入数据完成##')
 print('\n')
@@ -93,6 +97,8 @@ print('【检查并清除 android 的重复数据组】')
 file_handle.write('【检查并清除 android 的重复数据组】')
 file_handle.write('\n')
 file_handle.write('\n')
+
+
 duplicate_apps = []
 unique_apps = []
 
@@ -118,6 +124,7 @@ file_handle.writelines(EALD)
 file_handle.write('\n')
 file_handle.write('\n')
 
+
 #用新建 dictionary 除去重复数据组
 
 reviews_max = {}
@@ -133,6 +140,7 @@ for app in android:
         reviews_max[name] = n_reviews
 
         
+
 #检查一下 reviews_max 中元素数量是不是正确
 print('Expected length:', len(android) - 1181)
 print('\n')
@@ -146,6 +154,7 @@ file_handle.writelines(ANL)
 file_handle.write('\n')
 file_handle.write('\n')
 
+
 #开始清除重复应用数据
 android_clean = []
 already_added = []
@@ -157,6 +166,7 @@ for app in android:
     if (reviews_max[name] == n_reviews) and (name not in already_added):
         android_clean.append(app)
         already_added.append(name)
+
 
 explore_data(android_clean, 0, 2, True) #检验元素样本和数量是否正确
 file_handle.write('\n')
@@ -249,6 +259,7 @@ file_handle.write('##开始分析数据##')
 file_handle.write('\n')
 file_handle.write('\n')
 # data analysis of genre  app 热门种类百分比
+
 def freq_table(dataset, index):
     table = {}
     total = 0
@@ -387,6 +398,7 @@ for category in categories_android:
             len_category += 1
     avg_n_installs = total / len_category
     print(category, ':', avg_n_installs)
+
     CA = [category, ':', str(avg_n_installs)]
     file_handle.writelines(CA)
     file_handle.write('\n')
@@ -409,7 +421,7 @@ for app in android_final:
 print('\n')
 file_handle.write('\n')
 
-#这个程序是为了看一下如果去掉那些超过一亿下载量的应用之后样本中Googleplay应用的平均下载量，
+#这个程序是为了看一下如果去掉那些超过一亿下载量的应用之后样本中Googleplay应用的平均下载量
 
 under_100_m = []
 
@@ -450,6 +462,7 @@ print('【Googleplay 参考类高下载量应用及其下载数量级】')
 print('\n')
 file_handle.write('【Googleplay 参考类高下载量应用及其下载数量级】')
 file_handle.write('\n')
+
 for app in android_final:
     if app[1] == 'BOOKS_AND_REFERENCE' and (app[5] == '1,000,000,000+'
                                             or app[5] == '500,000,000+'
@@ -467,6 +480,7 @@ print('【Googleplay 通信类软件中高下载量软件及其下载数量级�
 print('\n')
 file_handle.write('【Googleplay 通信类软件中高下载量软件及其下载数量级】')
 file_handle.write('\n')
+
 for app in android_final:
     if app[1] == 'BOOKS_AND_REFERENCE' and (app[5] == '1,000,000+'
                                             or app[5] == '5,000,000+'
@@ -486,3 +500,4 @@ print('\n')
 file_handle.close()
 
 print('请在当前文件夹内查看 result.txt 获取分析结果')
+
