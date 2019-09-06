@@ -1,9 +1,14 @@
+#!/usr/bin/python3
+
+import getopt
+
+import sys
+
+from csv import reader
+
 
 #
 file_handle = open('result.txt',mode='w')
-
-#
-from csv import reader
 
 def explore_data(dataset, start, end, rows_and_columns = False):
     dataset_slice = dataset[start:end]
@@ -23,26 +28,73 @@ def explore_data(dataset, start, end, rows_and_columns = False):
         Col = ['Number of columns:',str(len(dataset[0]))]
         file_handle.writelines(Col)
         
+def freq_table(dataset, index):
+    table = {}
+    total = 0
+    
+    for row in dataset:
+        total += 1
+        value = row[index]
+        if value in table:
+            table[value] += 1
+        else:
+            table[value] = 1
+    
+    table_percentages = {}
+
+    for genre in table:
+        percentage = (table[genre] / total) * 100
+        table_percentages[genre] = percentage 
+    
+    return table_percentages
+
+
+def display_table(dataset, index):
+    table = freq_table(dataset, index)
+    table_display = []
+    for key in table:
+        key_val_as_tuple = (table[key], key)
+        table_display.append(key_val_as_tuple)
+        
+    table_sorted = sorted(table_display, reverse = True)
+    for entry in table_sorted:
+        print(entry[1], ':', entry[0])
+        G = [str(entry[1]),':', str(entry[0])]
+        file_handle.writelines(G)
+        file_handle.write('\n')
 
 #UTF-8 编码以防万一
 #_*_ coding:utf-8 _*_
  
-# 读取 Applestore dataset
 
-open_fileA = open('AppleStore.csv',encoding='UTF-8')
-read_fileA = reader(open_fileA)
-ios = list(read_fileA)
-ios_T_head = ios[0]
-ios = ios[1:] #去掉首行的每列名称
+if __name__ == '__main__':
+    opts, args = getopt.getopt(sys.argv[1:], 'A:B:', ['Table_A=','Table_B='])#可以输入两个其他时期的 Applestore 和  Googleplay 的数据表格进行分析
 
+    Table_A = 'AppleStore.csv'
+    Table_B = 'googleplaystore.csv'
 
-#读取 Googleplay dataset
+    for key, value in opts:
 
-open_fileG = open('googleplaystore.csv',encoding='UTF-8')
-read_fileG = reader(open_fileG)
-android = list(read_fileG)
-android_T_head = android[0]
-android = android[1:] #去掉各自表格首行的每列名称
+        if key in ['-A','--Table_A']:
+            Table_A = value
+
+        if key in ['-B','--Table_B']:
+            Table_B = value
+
+    # 读取 Applestore dataset
+    open_fileA = open( Table_A ,encoding='UTF-8')
+    read_fileA = reader(open_fileA)
+    ios = list(read_fileA)
+    ios_T_head = ios[0]
+    ios = ios[1:] #去掉首行的每列名称
+
+    #读取 Googleplay dataset
+
+    open_fileG = open( Table_B ,encoding='UTF-8')
+    read_fileG = reader(open_fileG)
+    android = list(read_fileG)
+    android_T_head = android[0]
+    android = android[1:] #去掉各自表格首行的每列名称
 
 
 print('##导入数据完成##')
@@ -54,8 +106,8 @@ file_handle.write('\n')
 file_handle.write('\n')
 
 #得知 Googleplay dataset 中有一行数据是错误的，确认错误位置
-print('【确认 android 中的错误数据行位置】')
-file_handle.write('【确认 android 中的错误数据行位置】')
+print('【确认 Googleplay 中的错误数据行位置】')
+file_handle.write('【确认 Googleplay 中的错误数据行位置】')
 file_handle.write('\n')
 print(android[10472])
 print('\n')
@@ -93,8 +145,8 @@ file_handle.write('\n')
 file_handle.write('\n')
 
 #除去 android 的重复数据组
-print('【检查并清除 android 的重复数据组】')
-file_handle.write('【检查并清除 android 的重复数据组】')
+print('【检查并清除 Googleplay 的重复数据组】')
+file_handle.write('【检查并清除 Googleplay 的重复数据组】')
 file_handle.write('\n')
 file_handle.write('\n')
 
@@ -258,43 +310,9 @@ print('\n')
 file_handle.write('##开始分析数据##')
 file_handle.write('\n')
 file_handle.write('\n')
+
 # data analysis of genre  app 热门种类百分比
 
-def freq_table(dataset, index):
-    table = {}
-    total = 0
-    
-    for row in dataset:
-        total += 1
-        value = row[index]
-        if value in table:
-            table[value] += 1
-        else:
-            table[value] = 1
-    
-    table_percentages = {}
-
-    for genre in table:
-        percentage = (table[genre] / total) * 100
-        table_percentages[genre] = percentage 
-    
-    return table_percentages
-
-
-def display_table(dataset, index):
-    table = freq_table(dataset, index)
-    table_display = []
-    for key in table:
-        key_val_as_tuple = (table[key], key)
-        table_display.append(key_val_as_tuple)
-        
-    table_sorted = sorted(table_display, reverse = True)
-    for entry in table_sorted:
-        print(entry[1], ':', entry[0])
-        G = [str(entry[1]),':', str(entry[0])]
-        file_handle.writelines(G)
-        file_handle.write('\n')
-    
 
 #Content Rating 苹果应用内容分级占比
 print('【Applestore 应用不同分类占比(%)】')
