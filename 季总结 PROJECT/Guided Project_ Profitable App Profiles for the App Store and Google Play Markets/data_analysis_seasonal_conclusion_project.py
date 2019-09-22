@@ -97,59 +97,45 @@ if __name__ == '__main__':
     android = android[1:] #去掉各自表格首行的每列名称
 
 
-print('##导入数据完成##')
-print('\n')
-
-print('##开始对数据的清理##')
-file_handle.write('##开始对数据的清理##')
-file_handle.write('\n')
-file_handle.write('\n')
+print('##导入数据完成##\n ##开始对数据的清理##')
+file_handle.write('##开始对数据的清理##\n\n')
 
 #得知 Googleplay dataset 中有一行数据是错误的，确认错误位置
 print('【确认 Googleplay 中的错误数据行位置】')
-file_handle.write('【确认 Googleplay 中的错误数据行位置】')
-file_handle.write('\n')
+file_handle.write('【确认 Googleplay 中的错误数据行位置】\n')
 print(android[10472])
 print('\n')
 A2 = [str(android[10472])]
 file_handle.writelines(A2)
-file_handle.write('\n')
-file_handle.write('\n')
+file_handle.write('\n\n')
+
 print(android[10473])
 print('\n')
 A3 = [str(android[10473])]
 file_handle.writelines(A3)
-file_handle.write('\n')
-file_handle.write('\n')
+file_handle.write('\n\n')
 print(android_T_head)
 ATH = [str(android_T_head)]
 file_handle.writelines(ATH)
-file_handle.write('\n')
-file_handle.write('\n')
+file_handle.write('\n\n')
 
 #在删除掉错误数据前后确认一下表格行数变化
 print('【在删除掉错误数据前后确认一下表格行数变化】')
-file_handle.write('【在删除掉错误数据前后确认一下表格行数变化】')
-file_handle.write('\n')
+file_handle.write('【在删除掉错误数据前后确认一下表格行数变化】\n')
 print(len(android))
 LA = str(len(android))
 file_handle.write(LA)
-file_handle.write('\n')
-file_handle.write('\n')
+file_handle.write('\n\n')
 del android[10472]  #删掉这组有问题的数据
 print(len(android))
 print('\n')
 LA = str(len(android))
 file_handle.write(LA)
-file_handle.write('\n')
-file_handle.write('\n')
+file_handle.write('\n\n')
 
 #除去 android 的重复数据组
 print('【检查并清除 Googleplay 的重复数据组】')
-file_handle.write('【检查并清除 Googleplay 的重复数据组】')
-file_handle.write('\n')
-file_handle.write('\n')
-
+file_handle.write('【检查并清除 Googleplay 的重复数据组】\n\n')
 
 duplicate_apps = []
 unique_apps = []
@@ -173,9 +159,7 @@ print('Expected length:', (len(android) - dup_num))
 print('\n')
 EALD = ['Expected length:',str((len(android) - dup_num))]
 file_handle.writelines(EALD)
-file_handle.write('\n')
-file_handle.write('\n')
-
+file_handle.write('\n\n')
 
 #用新建 dictionary 除去重复数据组
 
@@ -198,13 +182,12 @@ print('Expected length:', len(android) - 1181)
 print('\n')
 EAL = ['Expected length:',str((len(android) - 1181))]
 file_handle.writelines(EAL)
-file_handle.write('\n')
-file_handle.write('\n')
+file_handle.write('\n\n')
 print('Actual number:',len(reviews_max))
 ANL= ['Actual number:',str(len(reviews_max))]
 file_handle.writelines(ANL)
-file_handle.write('\n')
-file_handle.write('\n')
+file_handle.write('\n\n')
+
 
 
 #开始清除重复应用数据
@@ -221,8 +204,7 @@ for app in android:
 
 
 explore_data(android_clean, 0, 2, True) #检验元素样本和数量是否正确
-file_handle.write('\n')
-file_handle.write('\n')
+file_handle.write('\n\n')
 
 #除去非英语 app 的数据
 def is_english(string):
@@ -239,8 +221,7 @@ def is_english(string):
 
 #选出英语应用
 print('【选出英语应用】')
-file_handle.write('【选出英语应用】')
-file_handle.write('\n')
+file_handle.write('【选出英语应用】\n')
 
 android_english = []
 ios_english = []
@@ -255,24 +236,18 @@ for app in ios:
     if is_english(name):
         ios_english.append(app)
 
-print('android English Apps samples and total number:')
-print('\n')
-file_handle.write('android English Apps samples and total number:')
-file_handle.write('\n')
+print('android English Apps samples and total number:\n')
+file_handle.write('android English Apps samples and total number:\n')
 explore_data(android_english, 0, 2, True)
 print('\n')
 file_handle.write('\n')
-print('ios English Apps samples and total number:')
-print('\n')
-file_handle.write('ios English Apps samples and total number:')
-file_handle.write('\n')
-file_handle.write('\n')
+print('ios English Apps samples and total number:\n')
+file_handle.write('ios English Apps samples and total number:\n\n')
 explore_data(ios_english, 0, 2, True)
 
 #选出英语应用里的免费应用
 print('【选出免费的英语应用】')
-file_handle.write('【选出免费的英语应用】')
-file_handle.write('\n')
+file_handle.write('【选出免费的英语应用】\n')
 
 android_final = []
 ios_final = []
@@ -295,53 +270,38 @@ print('Number of ios free English Apps:',len(ios_final))
 print('\n')
 NFEI = ['Number of ios free English Apps:',str(len(ios_final))]
 file_handle.writelines(NFEI)
-file_handle.write('\n')
-file_handle.write('\n')
+file_handle.write('\n\n')
 
-print('##结束对数据的清理##')
-print('\n')
-file_handle.write('##结束对数据的清理##')
-file_handle.write('\n')
-file_handle.write('\n')
+print('##结束对数据的清理##\n')
+file_handle.write('##结束对数据的清理##\n\n')
 
 #
-print('##开始分析数据##')
-print('\n')
-file_handle.write('##开始分析数据##')
-file_handle.write('\n')
-file_handle.write('\n')
+print('##开始分析数据##\n')
+file_handle.write('##开始分析数据##\n\n')
 
 # data analysis of genre  app 热门种类百分比
 
-
 #Content Rating 苹果应用内容分级占比
 print('【Applestore 应用不同分类占比(%)】')
-file_handle.write('【Applestore 应用不同分类占比(%)】')
-file_handle.write('\n')
+file_handle.write('【Applestore 应用不同分类占比(%)】\n')
 display_table(ios_final, -5)
 print('\n')
 file_handle.write('\n')
 
 #category 安卓应用分级占比
 print('【Googleplay 应用分级占比(%)】')
-file_handle.write('【Googleplay 应用分级占比(%)】')
-file_handle.write('\n')
+file_handle.write('【Googleplay 应用分级占比(%)】\n')
 display_table(android_final, 1)
-print('\n')
 file_handle.write('\n')
 
 #Genres 安卓应用内容占比
-print('【Googleplay 应用内容各自占比(%)】')
-file_handle.write('【Googleplay 应用内容各自占比(%)】')
-file_handle.write('\n')
+print('\n【Googleplay 应用内容各自占比(%)】')
+file_handle.write('【Googleplay 应用内容各自占比(%)】\n')
 display_table(android_final, -4)
-print('\n')
-file_handle.write('\n')
 
 #average number of installs for each ios app genre 苹果各个应用内容的应用的平均下载量
-print('【Applestore 不同应用分类应用的平均下载量】')
-file_handle.write('【Applestore 不同应用分类应用的平均下载量】')
-file_handle.write('\n')
+print('\n【Applestore 不同应用分类应用的平均下载量】')
+file_handle.write('\n【Applestore 不同应用分类应用的平均下载量】\n')
 
 genres_ios = freq_table(ios_final, -5)
 
@@ -359,50 +319,44 @@ for genre in genres_ios:
     print(genre, ':', avg_n_ratings)
     GIOS = [genre, ':',str(avg_n_ratings)]
     file_handle.writelines(GIOS)
-    file_handle.write('\n')
+    file_handle.write('\n\n')
 print('\n')
-file_handle.write('\n')
 
 #user rating
 print('【Applestore 导航类各应用的评价人数】')
-file_handle.write('【Applestore 导航类各应用的评价人数】')
-file_handle.write('\n')
+file_handle.write('【Applestore 导航类各应用的评价人数】\n')
 for app in ios_final:
     if app[-5] == 'Navigation':
         print(app[2],':', app[6]) # print name and number of ratings
         AAA = [str(app[2]),':', str(app[6])]
         file_handle.writelines(AAA)
-        file_handle.write('\n')
+        file_handle.write('\n\n')
 print('\n')
-file_handle.write('\n')
+
 
 #Reference
 print('【Applestore 参考类各应用的评价人数】')
-file_handle.write('【Applestore 参考类各应用的评价人数】')
-file_handle.write('\n')
+file_handle.write('【Applestore 参考类各应用的评价人数】\n')
 for app in ios_final:
     if app[-5] == 'Reference':
         print(app[2], ':', app[6])
         AAA = [str(app[2]),':', str(app[6])]
         file_handle.writelines(AAA)
-        file_handle.write('\n')
+        file_handle.write('\n\n')
 print('\n')
-file_handle.write('\n')
 
 #Most Popular Apps by Genre on Google Play
 print('【Googleplay 应用下载数量级占比（%）】')
-file_handle.write('【Googleplay 应用下载数量级占比（%）】')
-file_handle.write('\n')
+file_handle.write('【Googleplay 应用下载数量级占比（%）】\n')
 display_table(android_final, 5) # the Installs columns
 print('\n')
 file_handle.write('\n')
 
 # name + procentage
 categories_android = freq_table(android_final, 1)
-print('【Googleplay 不同分类应用平均下载量（%）】')
-print('\n')
-file_handle.write('【Googleplay 不同应用分类应用平均下载量（%）】')
-file_handle.write('\n')
+print('【Googleplay 不同分类应用平均下载量（%）】\n')
+file_handle.write('【Googleplay 不同应用分类应用平均下载量（%）】\n')
+
 for category in categories_android:
     total = 0
     len_category = 0
@@ -419,15 +373,12 @@ for category in categories_android:
 
     CA = [category, ':', str(avg_n_installs)]
     file_handle.writelines(CA)
-    file_handle.write('\n')
+    file_handle.write('\n\n')
 print('\n')
-file_handle.write('\n')
 
 # 
-print('【Googleplay 通信类应用高下载量软件及其下载数量级】')
-print('\n')
-file_handle.write('【Googleplay 通信类应用高下载量软件及其下载数量级】')
-file_handle.write('\n')
+print('【Googleplay 通信类应用高下载量软件及其下载数量级】\n')
+file_handle.write('【Googleplay 通信类应用高下载量软件及其下载数量级】\n')
 for app in android_final:
     if app[1] == 'COMMUNICATION' and (app[5] == '1,000,000,000+'
                                       or app[5] == '500,000,000+'
@@ -435,9 +386,8 @@ for app in android_final:
         print(app[0], ':', app[5])
         AA = [app[0], ':', str(app[5])]
         file_handle.writelines(AA)
-        file_handle.write('\n')
+        file_handle.write('\n\n')
 print('\n')
-file_handle.write('\n')
 
 #这个程序是为了看一下如果去掉那些超过一亿下载量的应用之后样本中Googleplay应用的平均下载量
 
@@ -453,33 +403,26 @@ for app in android_final:
 print(sum(under_100_m) / len(under_100_m))
 print('\n')
 SL = str(sum(under_100_m) / len(under_100_m))
-file_handle.write('【如果去掉那些超过一亿下载量的应用之后通信类应用样本中Googleplay应用的平均下载量】：')
-file_handle.write('\n')
+file_handle.write('【如果去掉那些超过一亿下载量的应用之后通信类应用样本中Googleplay应用的平均下载量】：\n')
 file_handle.write(SL)
-file_handle.write('\n')
-file_handle.write('\n')
+file_handle.write('\n\n')
+
 
 #
+print('【Googleplay 参考类软件及其下载数量级】\n')
+file_handle.write('【Googleplay 参考类软件及其下载数量级】\n')
 
-print('【Googleplay 参考类软件及其下载数量级】')
-print('\n')
-file_handle.write('【Googleplay 参考类软件及其下载数量级】')
-file_handle.write('\n')
 for app in android_final:
     if app[1] == 'BOOKS_AND_REFERENCE':
         print(app[0], ':', app[5])
         AA = [app[0],':', app[5]]
         file_handle.writelines(AA)
-        file_handle.write('\n')
+        file_handle.write('\n\n')
 print('\n')
-file_handle.write('\n')
 
 #
-
-print('【Googleplay 参考类高下载量应用及其下载数量级】')
-print('\n')
-file_handle.write('【Googleplay 参考类高下载量应用及其下载数量级】')
-file_handle.write('\n')
+print('【Googleplay 参考类高下载量应用及其下载数量级】\n')
+file_handle.write('【Googleplay 参考类高下载量应用及其下载数量级】\n')
 
 for app in android_final:
     if app[1] == 'BOOKS_AND_REFERENCE' and (app[5] == '1,000,000,000+'
@@ -488,16 +431,13 @@ for app in android_final:
         print(app[0], ':', app[5])
         AA = [app[0],':', app[5]]
         file_handle.writelines(AA)
-        file_handle.write('\n')
+        file_handle.write('\n\n')
 print('\n')
-file_handle.write('\n')
 
 #
+print('【Googleplay 通信类软件中高下载量软件及其下载数量级】\n')
+file_handle.write('【Googleplay 通信类软件中高下载量软件及其下载数量级】\n')
 
-print('【Googleplay 通信类软件中高下载量软件及其下载数量级】')
-print('\n')
-file_handle.write('【Googleplay 通信类软件中高下载量软件及其下载数量级】')
-file_handle.write('\n')
 
 for app in android_final:
     if app[1] == 'BOOKS_AND_REFERENCE' and (app[5] == '1,000,000+'
@@ -507,15 +447,12 @@ for app in android_final:
         print(app[0], ':', app[5])
         AA = [app[0],':', app[5]]
         file_handle.writelines(AA)
-        file_handle.write('\n')
+        file_handle.write('\n\n')
 print('\n')
-file_handle.write('\n')
 
-print('##结束数据分析##')
+
+print('##结束数据分析##\n请在当前文件夹内查看 result.txt 获取分析结果')
 file_handle.write('##结束数据分析##')
-print('\n')
-
 file_handle.close()
 
-print('请在当前文件夹内查看 result.txt 获取分析结果')
 
