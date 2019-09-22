@@ -1,0 +1,2 @@
+import testmain
+testmain.test()
